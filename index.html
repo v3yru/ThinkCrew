@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThinkCrew - Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #8fc0eb;
+        }
+
+        #header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        #logo {
+            width: 100px;
+            height: 120px;
+            margin-right: 15px;
+        }
+
+        #slogan {
+            font-size: 1.5em;
+        }
+
+        .auth-buttons {
+            margin-top: 10px;
+        }
+
+        .auth-buttons button {
+            background-color: lightblue;
+            border: none;
+            padding: 8px 15px;
+            margin-right: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .auth-buttons button:hover {
+            background-color: deepskyblue;
+            color: white;
+        }
+
+        #features {
+            margin-top: 40px;
+        }
+
+        #features ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        #features li {
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+
+        #so {
+            text-align: center;
+            margin-top: 50px;
+            color: #ff0000;
+            font-size: 1.8em;
+        }
+
+        .old {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: small;
+            background-color: white;
+            border: 1px solid blue;
+            border-radius: 5px;
+            border-top: 10px solid blue;
+            padding: 30px;
+            width: 400px;
+        }
+
+        .old button {
+            padding: 10px 3px;
+            background-color: lightblue;
+            border-color: white;
+            cursor: pointer;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .old button:hover {
+            background-color: deepskyblue;
+            color: white;
+        }
+
+        #creative-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        #top-row {
+            display: flex;
+            gap: 50px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        #Drawings {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        #Drawings img {
+            width: 200px;
+            height: auto;
+        }
+
+        #everyone-chance {
+            font-size: 1.5em;
+            color: #ff0000;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="new" style="display: block;">
+        <div id="header">
+            <img src="Thinkcrew(1).png" alt="ThinkCrew Logo" id="logo">
+            <h1 id="slogan">ThinkCrew - Where ideas become reality.</h1>
+        </div>
+
+        <button style="background-color: peachpuff;" onclick="free()">Try out for free.</button>
+
+        <div id="features">
+            <h2>What we offer:</h2>
+            <ul>
+                <li>Idea Generator 💡</li>
+                <li>Timers & Reminders ⏰</li>
+                <li>Folder For Favorite Ideas 💾</li>
+                <li>Sharing With Friends 🔗</li>
+            </ul>
+            <h3>And you don't even need to sign up.</h3>
+        </div>
+
+        <h1 id="so">So, what are you waiting for?</h1>
+    </div>
+
+    <div id="creative-section" style="display: none;">
+        <div id="top-row">
+            <div class="old">
+                <h1>Lets get into creative mode.</h1>
+                <button onclick="window.location.href='ni.html'">Need a new idea?</button>
+                <button onclick="window.location.href='ti.html'">Need to set up a new timer?</button>
+                <button onclick="window.location.href='fi.html'">Need to save your favorite idea?</button>
+                <button onclick="window.location.href='si.html'">Need to share an idea with a friend or co-worker?</button>
+            </div>
+
+            <div id="Drawings">
+                <p>Make your ideas—become reality.</p>
+                <img src="Olá - Relaxing.png" alt="Relaxing">
+                <img src="Happy Bunch - Desk.png" alt="Desk">
+            </div>
+        </div>
+
+        <h1 id="everyone-chance">Everyone deserves a chance.</h1>
+    </div>
+
+    <script>
+        const creative = document.getElementById("creative-section");
+        const n = document.getElementById("new");
+
+        if (localStorage.getItem("HSI") === "Y") {
+            n.style.display = "none";
+            creative.style.display = "block";
+        } else {
+            localStorage.setItem("HSI", "N");
+            n.style.display = "block";
+            creative.style.display = "none";
+        }
+
+        function free() {
+            console.log("Button clicked!");
+            localStorage.setItem("HSI", "Y");
+            n.style.display = "none";
+            creative.style.display = "block";
+
+            const deviceInfo = {
+                userAgent: navigator.userAgent,
+                platform: navigator.platform,
+                language: navigator.language,
+                screenWidth: screen.width,
+                screenHeight: screen.height
+            };
+            console.log("Device info:", deviceInfo);
+            localStorage.setItem("deviceInfo", JSON.stringify(deviceInfo));
+        }
+
+    </script>
+
+</body>
+
+</html>
