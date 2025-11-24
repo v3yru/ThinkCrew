@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThinkCrew - Folder For Favorite Ideas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #8fc0eb;
+        }
+
+        .Folder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: small;
+            background-color: white;
+            border: 1px solid rgb(75, 63, 214);
+            border-radius: 5px;
+            border-top: 10px solid rgb(75, 63, 214);
+            padding: 30px;
+            width: 400px;
+            gap: 20px;
+        }
+
+        .Folder button {
+            padding: 10px 20px;
+            background-color: lightblue;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .Folder button:hover {
+            background-color: deepskyblue;
+            color: white;
+        }
+
+        .container {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .ds {
+            background-color: white;
+            border: 1px solid rgb(75, 63, 214);
+            border-radius: 5px;
+            border-top: 10px solid rgb(75, 63, 214);
+            padding: 30px;
+            font-size: small;
+            max-width: 400px;
+        }
+
+        .ds button {
+            padding: 10px 20px;
+            background-color: lightblue;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .ds button:hover {
+            background-color: deepskyblue;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Your Folder For Your Favorite ideas:</h1>
+    <div class="container">
+        <div class="Folder">
+            <h1 id="ideas">...</h1>
+            <input id="addidea" type="text" placeholder="Type your idea here">
+            <button onclick="ai()">Add idea?</button>
+            <button onclick="dall()">Delete All Ideas?</button>
+            <div>
+                <input id="deleteidea" type="text" placeholder="Type the idea you want to delete here...">
+                <button id="dsi" onclick="dsin()">Delete singular idea</button>
+                <p>type the idea you would like to delete by number in the form,</p>
+                <p>so "0", "1", "2" are valid but please don't add characters or special characters.</p>
+                <p>also</p>
+                <p>it goes from 0 to ∞ so what you think is 1 is actually 0.</p>
+            </div>
+            <button onclick="window.location.href='home.html'">Go back to home page?</button>
+        </div>
+
+        <div class="ds">
+            <h1>Saving your ideas—with a single click. for free.</h1>
+            <div>
+                <p>Don't have an idea?</p>
+                <p>Generate one.</p>
+                <button onclick="window.location.href='ni.html'">Idea Generator</button>
+            </div>
+            <img src="Thinkcrew(1).png" width="100px" height="100px">
+            <img src="Happy Bunch - Desk.png">
+            <img src="Olá - Relaxing.png">
+        </div>
+    </div>
+
+
+    <script>
+        const ideas = document.getElementById("ideas");
+        const addidea = document.getElementById("addidea");
+        let idealist = JSON.parse(localStorage.getItem("ideas")) || [];
+        const deleteidea = document.getElementById("deleteidea");
+        const dsi = document.getElementById("dsi");
+
+        displayIdeas();
+
+        function ai() {
+            if (addidea.value.trim() === "") return;
+            idealist.push(addidea.value);
+            addidea.value = "";
+            localStorage.setItem("ideas", JSON.stringify(idealist));
+            displayIdeas();
+        }
+
+        function displayIdeas() {
+            ideas.innerHTML = idealist.map(i => `• ${i}`).join("<br>");
+        }
+
+        function dall() {
+            idealist.length = 0;
+            localStorage.setItem("ideas", JSON.stringify([]));
+            displayIdeas();
+        }
+
+        function dsin() {
+            let index = parseInt(deleteidea.value);
+
+            if (isNaN(index) || index < 0 || index >= idealist.length) {
+                alert("Invalid index!");
+                return;
+            }
+
+            idealist.splice(index, 1);
+            localStorage.setItem("ideas", JSON.stringify(idealist));
+            displayIdeas();
+        }
+    </script>
+</body>
+
+</html>

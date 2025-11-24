@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ThinkCrew - Share your idea using facebook messenger.</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #8fc0eb;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: small;
+      background-color: white;
+      border: 1px solid blue;
+      border-radius: 5px;
+      border-top: 10px solid blue;
+      padding: 30px;
+      width: 400px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    button {
+      background-color: lightblue;
+      border: none;
+      padding: 8px 15px;
+      margin-right: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: deepskyblue;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h2>ThinkCrew messenger message Sender</h2>
+    <input type="text" id="username" placeholder="username here...">
+    <textarea id="message" placeholder="Your message here..."></textarea>
+    <button onclick="redirectToMessage()">Send Message</button>
+  </div>
+
+  <div class="home">
+    <h1>Go back home?</h1>
+    <button onclick="window.location.href='home.html'">Home</button>
+  </div>
+
+  <script>
+    function redirectToMessage() {
+      const username = document.getElementById('username').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      if (!username || !message) {
+        alert("Please enter both User name and message!");
+        return;
+      }
+
+
+      navigator.clipboard.writeText(message).then(() => {
+        alert("Message copied to clipboard! Just paste it in your messenger chat and hit Enter.");
+      });
+
+
+      const facebookURL = `https://discord.com/users/${username}`;
+      window.open(facebookURL, "_blank");
+    }
+  </script>
+
+</body>
+
+</html>

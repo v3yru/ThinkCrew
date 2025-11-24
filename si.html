@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThinkCrew - Share your idea.</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #8fc0eb;
+        }
+
+        .input {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: small;
+            background-color: white;
+            border: 1px solid blue;
+            border-radius: 5px;
+            border-top: 10px solid blue;
+            padding: 30px;
+            width: 400px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .input button {
+            background-color: lightblue;
+            border: none;
+            padding: 8px 15px;
+            margin-right: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .input button:hover {
+            background-color: deepskyblue;
+            color: white;
+        }
+
+        .home button {
+            padding: 10px 20px;
+            background-color: lightblue;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .home button:hover {
+            background-color: deepskyblue;
+            color: white;
+        }
+
+        .message {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: small;
+            background-color: white;
+            border: 1px solid blue;
+            border-radius: 5px;
+            border-top: 10px solid blue;
+            padding: 30px;
+            width: 400px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .message button {
+            background-color: lightblue;
+            border: none;
+            padding: 8px 15px;
+            margin-right: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .message button:hover {
+            background-color: deepskyblue;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="input">
+        <h1>Input your idea:</h1>
+        <p>Which one? please pick either whatsapp, discord, or messanger.</p>
+
+        <div id="buttons">
+            <button onclick="whatsapp()"><img src="pngtree-whatsapp-phone-icon-png-image_6315989.png" width="20px"
+                    height="20px"></button>
+            <button onclick="window.location.href='di.html'"><img src="discord-logo-discord-logo-transparent-discord-icon-transparent-free-free-png.webp" width="25px" height="25px"></button>
+            <button onclick="window.location.href='fa.html'"><img src="Facebook_Messenger_logo_2020.svg.png" width="20px"></button>
+        </div>
+    </div>
+
+    <div class="home">
+        <h1>Go back home?</h1>
+        <button onclick="window.location.href='home.html'">Home</button>
+    </div>
+
+    <div class="message" style="display: none;">
+        <h1>Your message:</h1>
+        <input form="input" placeholder="Your message here..." id="mfu">
+        <h1>Desired phone number:</h1>
+        <input form="input" placeholder="Desired phone number here..." id="pfu">
+        <button onclick="sendlink()">Send</button>
+        <h1>!When you send it YOU will have to click to "send" the desired message!</h1>
+    </div>
+
+    <script>
+        const input = document.querySelector(".input");
+        const message = document.querySelector(".message");
+
+        function whatsapp() {
+            input.style.display = "none";
+            message.style.display = "block";
+        }
+
+        function sendlink() {
+            const mfu = document.getElementById("mfu").value;
+            const pfu = document.getElementById("pfu").value;
+            if (!mfu || !pfu) {
+                alert("Please enter both a message and a phone number!");
+                return;
+            }
+            const messaged = encodeURIComponent(mfu);
+            const link = `https://wa.me/${pfu}?text=${messaged}`;
+            window.open(link, "_blank");
+        }
+    </script>
+</body>
+
+</html>

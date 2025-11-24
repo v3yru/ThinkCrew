@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThinkCrew - Idea Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #8fc0eb;
+        }
+
+        .Generate {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: small;
+            background-color: white;
+            border: 1px solid blue;
+            border-radius: 5px;
+            border-top: 10px solid blue;
+            padding: 30px;
+            width: 95%;
+            max-width: 900px;
+            gap: 20px;
+        }
+
+        .button-idea-container {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        .button-idea-container button {
+            flex: 1 1 150px; 
+            padding: 10px 20px;
+            background-color: lightblue;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .Idea {
+            flex: 1 1 300px;
+            min-width: 200px;
+            font-size: small;
+            background-color: white;
+            border: 1px solid grey;
+            border-radius: 5px;
+            border-top: 5px solid grey;
+            padding: 20px;
+            text-align: center;
+        }
+
+        #Drawings {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        #Drawings img {
+            width: 200px;
+            height: auto;
+        }
+
+        .folder button {
+            padding: 10px 20px;
+            background-color: lightblue;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .folder button:hover {
+            background-color: deepskyblue;
+            color: white;
+        }
+
+        .folder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .container {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .home button {
+            padding: 10px 20px;
+            background-color: lightblue;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .home button:hover {
+            background-color: deepskyblue;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="Generate">
+        <h1>Generate down below.</h1>
+
+        <div class="button-idea-container">
+            <button onclick="Generate()">Generate an idea!</button>
+            <div class="Idea">
+                <h1 style="color: grey;" id="thinking">Thinking...</h1>
+                <h1 style="display: none;" id="ideas"></h1>
+            </div>
+        </div>
+
+        <div class="folder">
+            <h1>Want to save your idea?</h1>
+            <h2>Save your idea in a folder here</h2>
+            <button onclick="window.location.href='fi.html'">Idea folder here</button>
+        </div>
+
+        <div id="Drawings">
+            <p>Make your ideas—become reality.</p>
+            <img src="Olá - Relaxing.png" alt="Relaxing">
+            <img src="Happy Bunch - Desk.png" alt="Desk">
+        </div>
+    </div>
+
+    <div class="home">
+        <h1>Go back home?</h1>
+        <button onclick="window.location.href='home.html'">Home</button>
+    </div>
+
+    <script>
+        const list = [
+            "AI-Powered Study Planner",
+            "Virtual Fitness Coach App",
+            "Eco-Friendly Product Marketplace",
+            "Smart Recipe Generator",
+            "Pet Care Reminder App",
+            "Freelancer Portfolio Platform",
+            "Online Language Exchange",
+            "AR Interior Design App",
+            "Music Collaboration Platform",
+            "Digital Habit Tracker",
+            "Remote Team Collaboration Tool",
+            "Virtual Reality Travel Experiences",
+            "Mental Health Support App",
+            "Personal Finance Tracker",
+            "AI Resume Builder",
+            "Second-Hand Clothes Marketplace",
+            "Smart Home Controller App",
+            "Daily Writing Prompt App",
+            "Interactive Storytelling Platform",
+            "Online Coding Bootcamp",
+            "Neighborhood Event App",
+            "Subscription Box Service",
+            "Healthy Meal Kit Delivery",
+            "Local Volunteer Finder",
+            "Gaming Tournament Platform",
+            "Digital Art Marketplace",
+            "Mood-Tracking Journal App",
+            "Blockchain Voting System",
+            "Personalized News Aggregator",
+            "AI-Powered Chatbot Builder",
+            "Language Learning Game App",
+            "Eco-Friendly Transportation App",
+            "Customizable Calendar App",
+            "Pet Adoption Platform",
+            "Crowdsourced Travel Guides",
+            "AR Learning App for Kids",
+            "Virtual Thrift Store",
+            "Online Music Lessons",
+            "Smart Grocery List App",
+            "AI-Powered Health Tracker",
+            "Digital Mind Map Tool",
+            "Recipe Sharing Community",
+            "Event Ticket Marketplace",
+            "Freelance Task Marketplace",
+            "Virtual Study Group Platform",
+            "Meditation and Mindfulness App",
+            "Online Fitness Classes",
+            "AI Personal Shopper",
+            "Community Garden App",
+            "Local Business Finder",
+            "Job Application Tracker",
+            "Digital Comic Platform",
+            "Language Tutor Matching App",
+            "Virtual Book Club",
+            "Custom Merchandise Store",
+            "Interactive Learning Games",
+            "Remote Work Job Board",
+            "Smart Budget Planner",
+            "AR Home Workout App",
+            "Sustainable Lifestyle Blog",
+            "Online Therapy Platform",
+            "AI-Powered Photo Editor",
+            "Digital Event Planner",
+            "Social Media Analytics Tool",
+            "Remote Music Collaboration App",
+            "Virtual Reality Learning Platform",
+            "Online Debate Platform",
+            "AI Essay Helper",
+            "Pet Tracking App",
+            "Digital Plant Care App",
+            "Local Food Finder",
+            "Virtual Art Gallery",
+            "Skill-Sharing Platform",
+            "Mental Health Community App",
+            "AI Career Advisor",
+            "Custom Workout Planner",
+            "Online Tutoring Marketplace",
+            "AR Shopping Assistant",
+            "Digital Time Capsule",
+            "Local Adventure Finder",
+            "Crowdsourced City Guide",
+            "Online Photography Classes",
+            "Smart Sleep Tracker",
+            "Virtual Networking Events",
+            "Healthy Recipe App",
+            "AI Writing Assistant",
+            "Freelance Project Manager",
+            "Interactive Science Learning",
+            "Sustainable Fashion Platform",
+            "AR Museum Guide",
+            "Online Coding Challenges",
+            "Virtual Language Tutor",
+            "Digital Scrapbooking App",
+            "Smart Travel Itinerary App",
+            "Pet Social Network",
+            "AI-Driven Marketing Tool",
+            "Online Fitness Challenges",
+            "Virtual Reality Social Hangouts",
+            "Custom Meditation Sessions",
+            "Interactive Story App for Kids",
+            "Remote Volunteer Platform",
+            "AI Music Composer",
+            "Digital Resume Marketplace",
+            "Local Event Discovery App",
+            "Sustainable Product Tracker",
+            "Personalized Book Recommendation App",
+            "Online Language Tests",
+            "Virtual Reality Concerts",
+            "AI-Powered Design Assistant",
+            "Community Skill Exchange"
+        ];
+
+        const ideas = document.getElementById("ideas");
+        const thinking = document.getElementById("thinking");
+
+        function Generate() {
+            thinking.style.display = "block";
+            ideas.style.display = "none";
+
+            setTimeout(() => {
+                const randomIndex = Math.floor(Math.random() * list.length);
+                const randomIdea = list[randomIndex];
+
+                thinking.style.display = "none";
+                ideas.textContent = randomIdea;
+                ideas.style.display = "block";
+            }, 500);
+        }
+    </script>
+</body>
+
+</html>
